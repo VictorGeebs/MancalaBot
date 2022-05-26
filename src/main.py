@@ -64,10 +64,13 @@ def move(board, index):
     board[3] = -player + 1
     return board
 
-#movelist = [2,3,5,1,0,2,1,0,5,4,2,4,2,4,1,0,3,0,2,3,0,1,1,4,2,2,3,4,5,4,4,5,3,5,0,2,1,1,2]
-while(board[3] != -1):
+def startgame(board):
+    while(board[3] != -1):
+        display(board)
+        i = int(input(f"Player {board[3]+1} to play, enter index to play in: "))
+        move(board, i)
     display(board)
-    i = int(input(f"Player {board[3]+1} to play, enter index to play in: "))
-    move(board, i)
-display(board)
-print("Game over poggers")
+    print("Game over poggers")
+
+startgame(board)
+#movelist = [2,3,5,1,0,2,1,0,5,4,2,4,2,4,1,0,3,0,2,3,0,1,1,4,2,2,3,4,5,4,4,5,3,5,0,2,1,1,2]
