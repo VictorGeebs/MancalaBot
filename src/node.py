@@ -16,9 +16,3 @@ class Node:
         for state in state_list:
             self.children.add(Node(state, parent=self))
         return self.children
-    
-    def get_gameover(self):
-        gameover = self.state.get_gameover()
-        if(gameover):
-            self.value = self.state.get_reward()
-        return gameover

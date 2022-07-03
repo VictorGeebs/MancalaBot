@@ -19,8 +19,16 @@ class Mancala():
             return True
         return False
 
-    def get_reward(self):
-        return self.board[2][0]
+    def get_reward(self, player):
+        if self.get_gameover():
+            if self.board[2][player] > 24:
+                return 1
+            if self.board[2][player] < 24:
+                return -1
+        return 0
+    
+    def get_player(self):
+        return self.board[3]
 
 def display(board):
     print()
