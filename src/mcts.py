@@ -76,7 +76,7 @@ def findMove(node):
     while(i < max_iter):
         curr_node = expand(node)
         curr_node = rollout(curr_node)
-        reward = node.state.get_reward(init_player)
+        reward = curr_node.state.get_reward(init_player)
         curr_node.value = reward
         backpropagate(curr_node, reward)
 
