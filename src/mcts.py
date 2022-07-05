@@ -52,13 +52,6 @@ def rollout(node):
     
     return rollout(random.choice(list(node.generate_states()))) # WARNING: choice from set deprecated, list from set O(n) time
 
-def rollout_avg(node, n):
-    gameover = node.state.get_gameover()
-    if(gameover is True):
-        return node
-    
-    return rollout(random.choice(list(node.generate_states())))
-
 # Update visited nodes with reward 
 def backpropagate(node, value):
     while(node.parent is not None):
@@ -80,6 +73,20 @@ def findMove(node):
         curr_node.value = reward
         backpropagate(curr_node, reward)
 
-        i += 1
-        
+        i += 1 
+    return selectValue(node)
+
+def findMove_avg(node, n):
+    max_iter = 100
+    i = 0
+    init_player = node.state.get_player()
+    while(i < max_iter):
+        expanded_node = expand(node)
+        for _ in range(n):
+            curr_node = rollout(expanded_node)
+            reward = curr_node.state.get_reward(init_player)
+            curr_node.value = reward
+            backpropagate(curr_node, reward)
+
+        i += 1 
     return selectValue(node)
